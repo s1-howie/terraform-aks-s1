@@ -1,0 +1,42 @@
+# THE FOLLOWING VARIABLES MUST BE CUSTOMIZED FOR YOUR AZURE ENVIRONMENT!!!
+
+client_id     = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" # appID 
+client_secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"   # password
+# Reference:  https://learn.hashicorp.com/tutorials/terraform/aks?in=terraform/kubernetes
+# az ad sp create-for-rbac --skip-assignment
+
+
+# THE FOLLOWING S1 AND CONTAINER REGISTRY-RELATED VARIABLES MUST BE CUSTOMIZED FOR YOUR S1 DEPLOYMENT!!!
+s1_site_key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=="
+docker_server                  = "xxxxx.azurecr.io"
+docker_username                = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+docker_password                = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+s1_helper_image_repository     = "xxxxx.azurecr.io/s1helper"
+s1_agent_image_repository      = "xxxxx.azurecr.io/s1agent"
+
+# The following Azure/AKS-related variables can be left as is or be customized as you see fit.
+resource_group_name = "aks-s1-rg"
+location            = "eastus"
+cluster_name        = "aks-s1-demo"
+dns_prefix          = "aks-s1-demo"
+agent_count         = "2"               # The number of worker nodes to allocate for the AKS cluster
+kubernetes_version  = "1.25.2"          # find available versions with: az aks get-versions --location eastus
+vm_size             = "Standard_D2s_v3" #"Standard_DS1_v2"  "Standard_B2s" https://docs.microsoft.com/en-us/azure/virtual-machines/sizes-general
+nodepool_name       = "s1nodepool"
+
+
+# The following S1-related variables can be left as is or be customized as you see fit.
+s1_repository_pull_secret_name   = "s1-repo-pull-secret"
+s1_helper_image_tag              = "ga-22.3.3" # Check for latest versions:  https://support.sentinelone.com/hc/en-us/articles/115004361149-Latest-Information
+s1_agent_image_tag               = "ga-22.3.3" # Check for latest versions:  https://support.sentinelone.com/hc/en-us/articles/115004361149-Latest-Information
+helm_chart_version               = "22.3.3"
+s1_namespace                     = "sentinelone"
+helm_release_name                = "s1"
+agent_resources_requests_cpu     = "500m"
+agent_resources_requests_memory  = "1.0Gi"
+agent_resources_limits_cpu       = "900m"
+agent_resources_limits_memory    = "1.9Gi"
+helper_resources_requests_cpu    = "200m"
+helper_resources_requests_memory = "200Mi"
+helper_resources_limits_cpu      = "900m"
+helper_resources_limits_memory   = "1.9Gi"
