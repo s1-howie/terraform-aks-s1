@@ -8,9 +8,9 @@ output "host" {
   sensitive = true
 }
 
-output "kubeconfig_cmd" {
-  value = "export KUBECONFIG=${path.cwd}/azurek8s"
-}
+# output "kubeconfig_cmd" {
+#   value = "export KUBECONFIG=${path.cwd}/azurek8s"
+# }
 
 output "az_aks_kubeconfig" {
   value = "az aks get-credentials --resource-group ${azurerm_resource_group.rg.name} --name ${var.cluster_name} --overwrite-existing"
